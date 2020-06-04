@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for article in articles %}
+        <div>
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.id }}</p>
+            <a href={{article.get_absolute_url_detail}} >Voir le détail</a>
+        </div>
+        {% empty %}
+            <p>Aucun article.</p>
+    {% endfor %}
+{% endblock %}

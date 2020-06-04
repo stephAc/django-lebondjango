@@ -1,0 +1,17 @@
+<head>
+  {% load static %}
+  <link href="{% static 'css/navbar.css' %}" rel="stylesheet" media="screen" />
+</head>
+  <nav class="navbar">
+    <div class="list leftList">
+        <a class="mainBtn" href="{% url 'articles:index' %}">LebonDjango</a>
+        <a href="#news">
+          <div class="adButton">
+              <span class="adIcon">+</span> &nbsp
+              Déposer une annonce
+            </div>
+        </a>
+    </div>
+    <div class="list rightList">
+      <a class="active" href="#home">Se connecter</a>
+  </nav>

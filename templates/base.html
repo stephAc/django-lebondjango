@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <title>{% block title %} LeBonDjango {% endblock title %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" value="fr" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{% static 'css/template.css' %}"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="{% static 'css/footer.css' %}"
+      rel="stylesheet"
+      media="screen"
+    />
+  </head>
+  <body>
+    {% block nav %} {% include "navbar.html" %} {% endblock %}
+    <div class="content">
+      {% block search %}
+        {% include "search/search_form.html" %}
+      {% endblock %}
+      {% block content %} Base content {% endblock %}
+    </div>
+
+    {% block footer %} {% include "footer.html" %} {% endblock %}
+  </body>
+</html>

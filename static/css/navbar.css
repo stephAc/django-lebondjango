@@ -1,0 +1,47 @@
+.navbar {
+  height: 70px;
+  width: 100%;
+  position: relative;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rightList {
+  margin-right: 20px;
+}
+.rightList > a {
+  color: black;
+}
+.leftList {
+  margin-left: 20px;
+}
+
+.adButton {
+  height: 20px;
+  background-color: #ff6e14;
+  color: white;
+  padding: 10px;
+  margin: 0px 10px 0px 30px;
+  border-radius: 2px;
+}
+
+.adIcon {
+  border: 3px solid white;
+  padding: 0px 3px 0px 3px;
+  border-radius: 2px;
+}
+
+.mainBtn {
+  font-size: 25px;
+  color: #ff6e14;
+}
