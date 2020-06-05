@@ -1,5 +1,16 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import Account
 
-from .models import User
 
-admin.site.register(User)
+class AccountAdmin(UserAdmin):
+    list_display = ("email", "username", "phone", "date_of_birth")
+    search_fields = ("email", "username")
+    readonly_fields = ("date_joined", "last_login")
+
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+
+admin.site.register(Account, AccountAdmin)

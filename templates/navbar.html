@@ -13,5 +13,17 @@
         </a>
     </div>
     <div class="list rightList">
-      <a class="active" href="#home">Se connecter</a>
+    {% if request.user.is_authenticated%}
+      <div class="dropdown" style="float:right;">
+        <button class="dropbtn">{{request.user.username}}</button>
+        <div class="dropdown-content">
+          <a href="#">Profil</a>
+          <a href="#">Mes annonces</a>
+          <a href="#">Annonces sauvegardées</a>
+          <a href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+      </div>
+    {% else %}
+            <a href="{% url 'login' %}">Se connecter</a>
+    {% endif %}
   </nav>

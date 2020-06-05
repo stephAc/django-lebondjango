@@ -24,7 +24,7 @@ class Articles(models.Model):
     town = models.ForeignKey("Town", on_delete=models.SET_NULL, null=True)
     accepted = models.BooleanField(default=False)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
-    owner = models.ForeignKey("user.User", on_delete=models.CASCADE, null=True)
+    owner = models.ForeignKey("user.Account", on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = "Articles"

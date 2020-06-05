@@ -3,9 +3,23 @@
 {% block content %}
     <h1>Inscription</h1>
     <form method='POST'> {% csrf_token %}
-        {{ form.as_p }}
+        {% for field in registration_form %}
+            <p>
+                {{field.label_tag}}
+                {{field}}
+
+                {% if field.help_text %}
+                    <small style="color: grey;">{{field.help_text}}</small>
+                {% endif %}
+
+                {% for error in field.errors %}
+                    <p style="color: red;">{{error}}</p>
+                {% endfor %}
+            </p>
+	    {% endfor %}
+
         <input type='submit' value="S'inscrire" />
-    <form>
-    <p><a href="{% url 'authentication' %}">J'ai un compte</a></p>
+    </form>
+    <p><a href="{% url 'login' %}">J'ai un compte</a></p>
 
 {% endblock %}

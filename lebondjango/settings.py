@@ -71,6 +71,7 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = "user.Account"
 WSGI_APPLICATION = "lebondjango.wsgi.application"
 
 
