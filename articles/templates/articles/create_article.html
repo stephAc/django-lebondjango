@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block search %}{% endblock %}
 {% block content %}
+    {% if confirmation %}
+        <div>Votre annonce à bien été pris en compte et attend d'être validé</div>
+    {% endif %}
     <h1>Déposer une annonce</h1>
     <form method='POST'> {% csrf_token %}
         {{ form.as_p }}
-        <input type='submit' value='Save' />
+        <input type='submit' value='Enregistrer' />
     <form>
 {% endblock %}

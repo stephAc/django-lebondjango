@@ -4,8 +4,8 @@
 </head>
   <nav class="navbar">
     <div class="list leftList">
-        <a class="mainBtn" href="{% url 'articles:index' %}">LebonDjango</a>
-        <a href="#news">
+        <a class="mainBtn" href="{% url 'home' %}">LebonDjango</a>
+        <a href="{% url 'articles:add' %}">
           <div class="adButton">
               <span class="adIcon">+</span> &nbsp
               Déposer une annonce
@@ -14,11 +14,11 @@
     </div>
     <div class="list rightList">
     {% if request.user.is_authenticated%}
-      <div class="dropdown" style="float:right;">
+      <div class="dropdown" style="float:right; margin-right: 50px;">
         <button class="dropbtn">{{request.user.username}}</button>
         <div class="dropdown-content">
           <a href="#">Profil</a>
-          <a href="#">Mes annonces</a>
+          <a href="{% url 'user_ad' %}">Mes annonces</a>
           <a href="#">Annonces sauvegardées</a>
           <a href="{% url 'logout' %}">Déconnexion</a>
         </div>

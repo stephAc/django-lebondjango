@@ -46,6 +46,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     phone = models.CharField(max_length=50, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     picture = models.ImageField(blank=True, null=True)
+    saved_articles = models.ManyToManyField("articles.Articles")
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(null=True)

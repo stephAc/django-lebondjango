@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from .forms import InscriptionForm, AuthenticationForm
+from articles.models import Articles
 
 
 def inscription_view(request):
@@ -50,3 +51,9 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("home")
+
+
+def my_ad_view(request):
+    user = request.user
+    articles = Articles.objects.filter(owner=user)
+    return render(request, "user/ad.html", {"ads": articles})

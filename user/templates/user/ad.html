@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block search %}{% endblock %}
+{% block content %}
+     {% for ad in ads %}
+        <div>
+            <h3>{{ ad.title }}</h3>
+            <p>{{ ad.id }}</p>
+            <a href={{ad.get_absolute_url_detail}} >Voir le détail</a>
+            <form action="{% url 'articles:delete' ad.id%}"  method='POST'>{% csrf_token %}
+                <p><input type='submit' value='Supprimer' />
+            </form>
+        </div>
+        {% empty %}
+            <p>Aucun article.</p>
+    {% endfor %}
+{% endblock %}

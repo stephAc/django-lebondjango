@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Articles, Town, Category
 from .forms import ArticleForm
@@ -18,18 +18,30 @@ def detail_article(request, article_id):
 
 
 def create_article(request):
-    form = ArticleForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        print("save")
+    confirmation = False
+    context = {}
 
-    return render(request, "articles/create_article.html", {"form": form})
+    if request.POST:
+        form = ArticleForm(request.POST or None)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.owner = request.user
+            article.save()
+            form = ArticleForm()
+            confirmation = True
+    else:
+        form = ArticleForm()
+
+    context["form"] = form
+    context["confirmation"] = confirmation
+
+    return render(request, "articles/create_article.html", context)
 
 
 def delete_article(request, article_id):
-    if request.method == "DELETE":
+    if request.method == "POST":
         obj = get_object_or_404(Articles, id=article_id)
         obj.delete()
-        return redirect(request, "pages/home.html", {})
+        return redirect("user_ad")
 
-    return render(request, "pages/home.html", {})
+    return render(request, "user/ad.html", {})
