@@ -27,7 +27,7 @@ def login_view(request):
     context = {}
     user = request.user
     if user.is_authenticated:
-        return redirect("home")
+        return redirect("articles:index")
     if request.POST:
         print("post")
         form = AuthenticationForm(request.POST)
@@ -40,7 +40,7 @@ def login_view(request):
             print(user)
             if user:
                 login(request, user)
-                return redirect("home")
+                return redirect("articles:index")
     else:
         form = AuthenticationForm()
 
@@ -50,7 +50,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("articles:index")
 
 
 def my_ad_view(request):

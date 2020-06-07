@@ -4,14 +4,36 @@ from .models import Articles, Town, Category
 from .forms import ArticleForm
 
 
-def index(request):
-    articles = Articles.objects.all()
+def is_valid_queryparam(param):
+    return param != "" and param is not None
 
-    return render(request, "articles/index.html", {"articles": articles})
+
+def index(request):
+    context = {}
+    articles = Articles.objects.all()
+    category = Category.objects.all()
+    town = Town.objects.all()
+    context["category"] = category
+    context["town"] = town
+
+    article_name = request.GET.get("article_name")
+    article_category = request.GET.get("article_category")
+    article_town = request.GET.get("article_town")
+
+    if is_valid_queryparam(article_category):
+        articles = articles.filter(category=article_category)
+    if is_valid_queryparam(article_town):
+        articles = articles.filter(town=article_town)
+    if is_valid_queryparam(article_name):
+        article_list = article_name.split(" ")
+        articles = articles.filter(title__in=article_list)
+
+    context["articles"] = articles
+
+    return render(request, "articles/index.html", context)
 
 
 def detail_article(request, article_id):
-    # article = Articles.objects.get(id=article_id)
     article = get_object_or_404(Articles, id=article_id)
 
     return render(request, "articles/detail_article.html", {"article": article})
@@ -45,3 +67,18 @@ def delete_article(request, article_id):
         return redirect("user_ad")
 
     return render(request, "user/ad.html", {})
+
+
+def search_articles(request):
+    context = {}
+    articles = Articles.objects.all()
+    category = Category.objects.all()
+    town = Town.objects.all()
+    context["category"] = category
+    context["Town"] = town
+
+    article_name = request.GET.get("article_name")
+    article_category = request.GET.get("article_category")
+    article_town = request.GET.get("article_town")
+
+    return render(request, "articles/index.html", context)

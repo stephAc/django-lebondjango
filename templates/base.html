@@ -17,14 +17,16 @@
       rel="stylesheet"
       media="screen"
     />
+    <link
+        href="{% static 'articles/css/search_form.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
   </head>
   <body>
     {% block nav %} {% include "navbar.html" %} {% endblock %}
     <div class="content">
-      {% block search %}
-        {% include "search/search_form.html" %}
-      {% endblock %}
-      {% block content %} Base content {% endblock %}
+      {% block content %} {% endblock %}
     </div>
 
     {% block footer %} {% include "footer.html" %} {% endblock %}
