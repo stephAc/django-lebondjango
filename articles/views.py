@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Articles, Town, Category
+from user.models import Account
 from .forms import ArticleForm
 
 
@@ -28,7 +29,7 @@ def index(request):
         article_list = article_name.split(" ")
         articles = articles.filter(title__in=article_list)
 
-    context["articles"] = articles
+    context["articles"] = articles.order_by("-timestamp")
 
     return render(request, "articles/index.html", context)
 

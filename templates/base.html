@@ -17,11 +17,8 @@
       rel="stylesheet"
       media="screen"
     />
-    <link
-        href="{% static 'articles/css/search_form.css' %}"
-        rel="stylesheet"
-        media="screen"
-    />
+
+    {% block css %}{% endblock %}
   </head>
   <body>
     {% block nav %} {% include "navbar.html" %} {% endblock %}

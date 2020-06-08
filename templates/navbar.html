@@ -13,7 +13,7 @@
         </a>
     </div>
     <div class="list rightList">
-    {% if request.user.is_authenticated%}
+    {% if request.user.is_authenticated %}
       <div class="dropdown" style="float:right; margin-right: 50px;">
         <button class="dropbtn">{{request.user.username}}</button>
         <div class="dropdown-content">

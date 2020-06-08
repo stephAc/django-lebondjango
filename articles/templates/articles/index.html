@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
+{% block css %}
+    {% load static %}
+    <link
+        href="{% static 'articles/css/search_form.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
+     <link
+        href="{% static 'articles/css/article.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
+{% endblock %}
 {% block content %}
     <div class="background"></div>
     <div class="searchForm">
@@ -23,13 +36,16 @@
             </div>
         </form>
     </div>
-    {% for article in articles %}
+    <div class="articleContainer">
+        <h2>Annonces</h2>
         <div>
-            <h3>{{ article.title }}</h3>
-            <p>{{ article.id }}</p>
-            <a href={{article.get_absolute_url_detail}} >Voir le détail</a>
+            {% for article in articles %}
+                {% if article.owner != request.user %}
+                    {% include "articles/includes/article_card.html" with article=article %}
+                {% endif %}
+                {% empty %}
+                    <p>Aucun article.</p>
+            {% endfor %}
         </div>
-        {% empty %}
-            <p>Aucun article.</p>
-    {% endfor %}
+    </div>
 {% endblock %}

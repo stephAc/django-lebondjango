@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
-{% block search %}{% endblock %}
+{% block css %}
+    {% load static %}
+     <link
+        href="{% static 'articles/css/article.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
+    <link
+        href="{% static 'user/css/myAd.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
+{% endblock %}
 {% block content %}
-     {% for ad in ads %}
-        <div>
-            <h3>{{ ad.title }}</h3>
-            <p>{{ ad.id }}</p>
-            <a href={{ad.get_absolute_url_detail}} >Voir le détail</a>
-            <form action="{% url 'articles:delete' ad.id%}"  method='POST'>{% csrf_token %}
-                <p><input type='submit' value='Supprimer' />
-            </form>
+        <div class="articleContainer" style="background: inherit">
+            <h2 style="color: white">Mes Annonces</h2>
+            {% for ad in ads %}
+                {% include "articles/includes/article_card.html" with article=ad delete=True %}
+                <form action="{% url 'articles:delete' ad.id%}"  method='POST'>{% csrf_token %}
+                    <p><input type='submit' value='Supprimer' class="deleteBtn" />
+                </form>
+            {% empty %}
+                <p>Aucun article.</p>
+            {% endfor %}
         </div>
-        {% empty %}
-            <p>Aucun article.</p>
-    {% endfor %}
 {% endblock %}

@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
-{% block seachr%}{% endblock %}
 {% block content %}
     {{article.id}}
     {{article.title}}
+
+    {% if not request.user.is_anonymous %}
+                        {% if article not in request.user.saved_articles %}
+                            <button>+</button>
+                        {% else %}
+                            <button>-</button>
+                        {% endif %}
+                    {% endif %}
 {% endblock %}
