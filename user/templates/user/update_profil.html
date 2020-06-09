@@ -4,7 +4,7 @@
     <div>
         <form action="" method="POST" class="form"> {% csrf_token %}
             <div class="inputForm">{{form }}</div>
-            <div class="btnDisplay">
+            <div class="btnDisplay" style="margin-bottom: 20px">
                 <input type="submit" value="Modifier" class="updateBtn" />
                 <div class="cancelBtn"><a href="{% url 'profil' %}">Annuler</a></div>
             </div>

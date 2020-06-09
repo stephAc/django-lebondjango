@@ -28,7 +28,7 @@ class Articles(models.Model):
 
     class Meta:
         verbose_name = "Articles"
-        ordering = ["timestamp"]
+        ordering = ["-timestamp"]
 
     def __str__(self):
         return self.title

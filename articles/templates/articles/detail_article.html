@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
+{% block css %}
+    {% load static %}
+     <link
+      href="{% static 'articles/css/detail.css' %}"
+      rel="stylesheet"
+      media="screen"
+    />
+{% endblock %}
 {% block content %}
-    {{article.id}}
-    {{article.title}}
 
-    {% if not request.user.is_anonymous %}
-                        {% if article not in request.user.saved_articles %}
-                            <button>+</button>
-                        {% else %}
-                            <button>-</button>
-                        {% endif %}
-                    {% endif %}
+    <div class="detailContainer">
+        <img src="{% static 'articles/img/no_image.png' %}" width="100%" />
+        <span style="float: right">{{article.timestamp}}</span>
+        <h2>{{article.title}}</h2>
+        <div style="display: flex; justify-content: space-between;"><p><span style="font-weight: bold">Catégorie</span> : {{article.category}}</p><p>{{article.price}}€</p></div>
+        <p><span style="font-weight: bold">Ville</span> : {{article.town}}</p>
+        <p style="font-weight: bold">Description :</p>
+        <p style="word-break: break-word">{{article.description | wordwrap:5 }}</p>
+
+    </div>
 {% endblock %}

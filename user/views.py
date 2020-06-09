@@ -60,6 +60,7 @@ def profil_view(request):
     return render(request, "user/profil.html", {})
 
 
+@login_required(login_url="/user/login")
 def update_profil(request):
 
     if request.POST:

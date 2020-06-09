@@ -1,0 +1,7 @@
+.detailContainer {
+  margin: 50px auto;
+  width: 300px;
+  min-height: 500px;
+  box-shadow: 0 0px 5px 0 black;
+  padding: 20px;
+}
