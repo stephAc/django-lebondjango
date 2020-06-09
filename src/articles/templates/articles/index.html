@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block css %}
+    {% load static %}
+    <link
+        href="{% static 'articles/css/search_form.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
+     <link
+        href="{% static 'articles/css/article.css' %}"
+        rel="stylesheet"
+        media="screen"
+    />
+{% endblock %}
+{% block content %}
+    <div class="background"></div>
+    <div class="searchForm">
+        <form action="{% url 'articles:index' %}" method="GET">
+            <div class="search_container">
+                <select class="input margin" name="article_category">
+                    <option value="" >Catégories</option>
+                    {% for cat in category %}
+                        <option value={{cat.id}}>{{cat.name}}</option>
+                    {% endfor %}
+                </select>
+                <input class="input margin" type="text" name="article_name" placeholder="Que recherchez-vous ?" />
+                <select class="input" name="article_town">
+                    <option value="" >Villes</option>
+                    {% for to in town %}
+                        <option value={{to.id}}>{{to.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="submit_btn_container">
+                <input class="submit_btn" type='submit' value='Rechercher' />
+            </div>
+        </form>
+    </div>
+    <div class="articleContainer">
+        <h2>Annonces</h2>
+        <div>
+            {% for article in articles %}
+                {% if article.owner != request.user %}
+                    {% include "articles/includes/article_card.html" with article=article %}
+                {% endif %}
+                {% empty %}
+                    <p>Aucun article.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
