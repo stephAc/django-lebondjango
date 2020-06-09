@@ -2,29 +2,11 @@
 {% block search %}{% endblock %}
 {% block content %}
     <h1>Se connecter</h1>
-    <form method='POST'> {% csrf_token %}
-        {% if login_form.non_field_errors %}
-            <div style="color:red;">
-                <p>{{login_form.non_field_errors}}</p>
-            </div>
-        {% endif %}
-        {% for field in login_form %}
-            <p>
-                {{field.label_tag}}
-                {{field}}
-
-                {% if field.help_text %}
-                    <small style="color: grey;">{{field.help_text}}</small>
-                {% endif %}
-
-            </p>
-        {% endfor %}
-        {% for field in login_form %}
-            {% for error in field.errors %}
-                <p style="color: red;">{{error}}</p>
-            {% endfor %}
-        {% endfor %}
-        <p><a href="{% url 'inscription' %}">Pas de compte ?</a></p>
-        <input type='submit' value='Se connecter' />
+    <form method='POST' class="form"> {% csrf_token %}
+        <div class="inputForm">{{login_form}}</div>
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom:15px">
+            <input type='submit' value='Se connecter' class="updateBtn" style="margin-bottom:10px" />
+            <a href="{% url 'inscription' %}">Pas de compte ?</a>
+        </div>
     <form>
 {% endblock %}
