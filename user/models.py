@@ -61,3 +61,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def clean_phone(self, *args, **kargs):
+        phone = self.cleaned_data.get("phone")
+        if len(phone) != 10:
+            raise forms.ValidationError("Longueur du numéro incorrect")
+        return phone

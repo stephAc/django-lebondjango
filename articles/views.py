@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Articles, Town, Category
 from user.models import Account
@@ -40,6 +41,7 @@ def detail_article(request, article_id):
     return render(request, "articles/detail_article.html", {"article": article})
 
 
+@login_required(login_url="/user/login")
 def create_article(request):
     confirmation = False
     context = {}
@@ -61,6 +63,7 @@ def create_article(request):
     return render(request, "articles/create_article.html", context)
 
 
+@login_required(login_url="/user/login")
 def delete_article(request, article_id):
     if request.method == "POST":
         obj = get_object_or_404(Articles, id=article_id)

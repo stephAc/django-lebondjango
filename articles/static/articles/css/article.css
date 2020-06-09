@@ -1,7 +1,7 @@
 .articleContainer {
   width: 700px;
   background-color: white;
-  margin: 0px auto 50px auto;
+  margin: 30px auto 50px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

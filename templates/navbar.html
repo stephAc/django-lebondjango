@@ -17,7 +17,7 @@
       <div class="dropdown" style="float:right; margin-right: 50px;">
         <button class="dropbtn">{{request.user.username}}</button>
         <div class="dropdown-content">
-          <a href="#">Profil</a>
+          <a href="{% url 'profil' %}">Profil</a>
           <a href="{% url 'user_ad' %}">Mes annonces</a>
           <a href="#">Annonces sauvegardées</a>
           <a href="{% url 'logout' %}">Déconnexion</a>

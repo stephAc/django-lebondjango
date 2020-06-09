@@ -33,7 +33,7 @@ class AuthenticationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ("email", "password")
+        fields = ["email", "password"]
 
     def clean(self):
         if self.is_valid():
@@ -41,3 +41,17 @@ class AuthenticationForm(forms.ModelForm):
             password = self.cleaned_data["password"]
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError("Email / Mot de passe incorrect")
+
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = Account
+        fields = ["email", "username", "phone"]
+
+    def clean_phone(self, *args, **kargs):
+        phone = self.cleaned_data.get("phone")
+        if len(phone) != 10:
+            raise forms.ValidationError("Longueur du numéro incorrect")
+        return phone
