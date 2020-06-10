@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content%}
     <div>
-        <form action="" method="POST" class="form"> {% csrf_token %}
+        <form action="" method="POST" class="form" enctype="multipart/form-data"> {% csrf_token %}
             <div class="inputForm">{{form }}</div>
             <div class="btnDisplay" style="margin-bottom: 20px">
                 <input type="submit" value="Modifier" class="updateBtn" />
-                <div class="cancelBtn"><a href="{% url 'profil' %}">Annuler</a></div>
+                <div class="cancelBtn"><a href="{% url 'user_ad' %}">Annuler</a></div>
             </div>
         </form>
     </div>

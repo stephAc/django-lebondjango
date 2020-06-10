@@ -1,6 +1,6 @@
 .detailContainer {
   margin: 50px auto;
-  width: 300px;
+  width: 500px;
   min-height: 500px;
   box-shadow: 0 0px 5px 0 black;
   padding: 20px;
@@ -10,4 +10,22 @@
   font-size: 10px;
   color: gray;
   float: right;
+}
+
+.reviewBtn {
+  float: right;
+  height: 80px;
+  width: 80px;
+  align-self: flex-end;
+  border: none;
+  background: #ff6e14;
+  color: white;
+  margin-bottom: 20px;
+  margin-right: -50px;
+  border-radius: 50%;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

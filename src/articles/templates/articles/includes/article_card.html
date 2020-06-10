@@ -1,6 +1,14 @@
+{% load static %}
 <a href={{article.get_absolute_url_detail}}>
     <div class="articleCard" >
-        <div style="margin: 10px 0px 20px 50px;">
+        <div>
+            {% if  article.image %}
+                <img src="{{ article.image.url }}" width="200px;" height="100%;" />
+            {% else %}
+                <img src="{% static 'articles/img/no_image.png' %}" width="200px;" height="100%;" />
+            {% endif %}
+        </div>
+        <div style="margin: 10px 0px 20px 50px; width: 100%">
             <div class="articleDetail">
                 <h3>{{ article.title }}</h3>
                 <p  style="margin-right: 20px;">{{article.category}}</p>

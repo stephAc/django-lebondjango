@@ -15,8 +15,8 @@
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .articleCard:hover h3 {

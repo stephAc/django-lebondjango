@@ -48,7 +48,6 @@ def create_article(request):
 
     if request.POST:
         form = ArticleForm(request.POST, request.FILES or None)
-        # form = ArticleForm(request.POST or None)
         if form.is_valid():
             article = form.save(commit=False)
             article.owner = request.user
@@ -87,3 +86,18 @@ def search_articles(request):
     article_town = request.GET.get("article_town")
 
     return render(request, "articles/index.html", context)
+
+
+@login_required(login_url="/user/login")
+def update_view(request, id):
+    instance = get_object_or_404(Articles, id=id)
+
+    if request.POST:
+        form = ArticleForm(request.POST, request.FILES or None, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect("user_ad")
+    else:
+        form = ArticleForm(instance=instance)
+
+    return render(request, "articles/update_article.html", {"form": form})

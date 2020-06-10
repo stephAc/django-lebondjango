@@ -17,8 +17,11 @@
             <h2 style="color: white">Mes Annonces</h2>
             {% for ad in ads %}
                 {% include "articles/includes/article_card.html" with article=ad delete=True %}
-                <form action="{% url 'articles:delete' ad.id%}"  method='POST'>{% csrf_token %}
-                    <p><input type='submit' value='Supprimer' class="deleteBtn" />
+                <form action="{% url 'articles:delete' ad.id%}"  method='POST' style="display:flex; justify-content: flex-end">{% csrf_token %}
+                    <div class="formBtnContainer">
+                        <a href="{% url 'articles:update_article' ad.id%}" class="formBtn updateBtn">Modifier</a>
+                        <input type='submit' value='Supprimer' class="formBtn deleteBtn" />
+                    </div>
                 </form>
             {% empty %}
                 <p>Aucun article.</p>
