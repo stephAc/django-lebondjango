@@ -40,7 +40,7 @@
         <h2>Annonces</h2>
         <div>
             {% for article in articles %}
-                {% if article.owner != request.user %}
+                {% if article.owner != request.user and article.accepted %}
                     {% include "articles/includes/article_card.html" with article=article %}
                 {% endif %}
                 {% empty %}

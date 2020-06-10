@@ -10,6 +10,13 @@
 {% block content %}
 
     <div class="detailContainer">
+        {% if article.owner == request.user %}
+            {% if article.accepted %}
+                <p class="status">Annonce accéptée</p>
+            {% else %}
+                <p class="status">En attend d'acceptation</p>
+            {% endif %}
+        {% endif %}
         {% if  article.image %}
             <img src="{{ article.image.url }}" width="100%" />
         {% else %}

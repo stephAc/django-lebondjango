@@ -5,3 +5,9 @@
   box-shadow: 0 0px 5px 0 black;
   padding: 20px;
 }
+
+.status {
+  font-size: 10px;
+  color: gray;
+  float: right;
+}
