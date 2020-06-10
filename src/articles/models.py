@@ -1,5 +1,17 @@
 from django.db import models
 from django.urls import reverse
+from django.dispatch import receiver
+from django.db.models.signals import post_delete
+
+
+def image_path(instance, filename):
+    file_path = "articles_img/{owner}/{title}-{timestamp}-{filename}".format(
+        owner=str(instance.owner.id),
+        title=str(instance.title),
+        timestamp=str(instance.timestamp),
+        filename=filename,
+    )
+    return file_path
 
 
 class Category(models.Model):
@@ -19,7 +31,8 @@ class Town(models.Model):
 class Articles(models.Model):
     title = models.CharField(max_length=150, null=False)
     price = models.DecimalField(max_digits=100000, decimal_places=2, null=False)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to=image_path, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True, verbose_name="Date de parution")
     town = models.ForeignKey("Town", on_delete=models.SET_NULL, null=True)
     accepted = models.BooleanField(default=False)
@@ -35,3 +48,8 @@ class Articles(models.Model):
 
     def get_absolute_url_detail(self):
         return reverse("articles:detail", kwargs={"article_id": self.id})
+
+
+@receiver(post_delete, sender=Articles)
+def _post_delete_receiver(sender, instance, **kwargs):
+    instance.image.delete(False)

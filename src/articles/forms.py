@@ -10,6 +10,7 @@ class ArticleForm(forms.ModelForm):
             "title",
             "price",
             "description",
+            "image",
             "town",
             "category",
         ]

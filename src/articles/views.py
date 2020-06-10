@@ -47,7 +47,8 @@ def create_article(request):
     context = {}
 
     if request.POST:
-        form = ArticleForm(request.POST or None)
+        form = ArticleForm(request.POST, request.FILES or None)
+        # form = ArticleForm(request.POST or None)
         if form.is_valid():
             article = form.save(commit=False)
             article.owner = request.user

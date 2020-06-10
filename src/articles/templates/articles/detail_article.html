@@ -10,7 +10,11 @@
 {% block content %}
 
     <div class="detailContainer">
-        <img src="{% static 'articles/img/no_image.png' %}" width="100%" />
+        {% if  article.image %}
+            <img src="{{ article.image.url }}" width="100%" />
+        {% else %}
+            <img src="{% static 'articles/img/no_image.png' %}" width="100%" />
+        {% endif %}
         <span style="float: right">{{article.timestamp}}</span>
         <h2>{{article.title}}</h2>
         <div style="display: flex; justify-content: space-between;"><p><span style="font-weight: bold">Catégorie</span> : {{article.category}}</p><p>{{article.price}}€</p></div>
